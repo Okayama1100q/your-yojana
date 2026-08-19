@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOJANA AI - Multilingual Chatbot Test Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow-sphere main-glow"></div>
+    <div class="glow-sphere secondary-glow"></div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Controls & Dev Console -->
+        <aside class="sidebar-panel">
+            <div class="brand-header">
+                <div class="brand-logo">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                    <h1>YOJANA AI</h1>
+                    <span class="sub-brand">Multilingual Assistant</span>
+                </div>
+            </div>
+
+            <!-- Profile & Location Simulation -->
+            <section class="control-card">
+                <h2><i class="fa-solid fa-sliders"></i> Simulation Panel</h2>
+                
+                <div class="form-group">
+                    <label>Mock Location State</label>
+                    <select id="mock-state">
+                        <option value="">Unknown / Detect on demand</option>
+                        <option value="Tamil Nadu">Tamil Nadu (தமிழ்)</option>
+                        <option value="Karnataka">Karnataka (ಕನ್ನಡ)</option>
+                        <option value="Kerala">Kerala (മലയാളം)</option>
+                        <option value="Maharashtra">Maharashtra (मराठी)</option>
+                        <option value="Gujarat">Gujarat (ગુજરાતી)</option>
+                        <option value="Punjab">Punjab (ਪੰਜਾਬੀ)</option>
+                        <option value="West Bengal">West Bengal (বাংলা)</option>
+                        <option value="Odisha">Odisha (ଓଡ଼ିଆ)</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh (हिन्दी)</option>
+                        <option value="Bihar">Bihar (हिन्दी)</option>
+                        <option value="Jharkhand">Jharkhand (हिन्दी)</option>
+                        <option value="Delhi">Delhi (हिन्दी)</option>
+                    </select>
+                    <small class="help-text">Simulates the userState sent from client profile or location check.</small>
+                </div>
+
+                <div class="form-group">
+                    <label class="toggle-container">
+                        <input type="checkbox" id="mock-location-permission" checked>
+                        <span class="toggle-slider"></span>
+                        Simulate Location Granted
+                    </label>
+                </div>
+
+                <button id="reset-session-btn" class="btn btn-secondary">
+                    <i class="fa-solid fa-arrows-rotate"></i> Reset Chat Session
+                </button>
+            </section>
+
+            <!-- State Monitor -->
+            <section class="control-card state-monitor">
+                <h2><i class="fa-solid fa-desktop"></i> Session State</h2>
+                <div class="state-grid">
+                    <div class="state-item">
+                        <span class="state-label">Preferred Lang</span>
+                        <span id="active-lang-badge" class="state-val none">None</span>
+                    </div>
+                    <div class="state-item">
+                        <span class="state-label">Detected State</span>
+                        <span id="active-state-badge" class="state-val none">None</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dev Log -->
+            <section class="control-card dev-log-card">
+                <h2><i class="fa-solid fa-terminal"></i> API Console (Latest Payload)</h2>
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="req-json">Request</button>
+                    <button class="tab-btn" data-tab="res-json">Response</button>
+                </div>
+                <div class="tab-content active" id="req-json">
+                    <pre><code id="request-payload-view">No request sent yet.</code></pre>
+                </div>
+                <div class="tab-content" id="res-json">
+                    <pre><code id="response-payload-view">No response received yet.</code></pre>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-panel">
+            <header class="chat-header">
+                <div class="chat-bot-info">
+                    <div class="bot-avatar">
+                        <i class="fa-solid fa-robot"></i>
+                        <span class="online-indicator"></span>
+                    </div>
+                    <div>
+                        <h2>YOJANA AI Assistant</h2>
+                        <p class="status-desc">Domain restricted to welfare & civic services</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="change-lang-shortcut" class="btn btn-shortcut">
+                        <i class="fa-solid fa-globe"></i> Change Language
+                    </button>
+                </div>
+            </header>
+
+            <!-- Messages Window -->
+            <div id="messages-container" class="messages-container">
+                <!-- Welcome/intro messages injected here -->
+            </div>
+
+            <!-- Dynamic Interactive Options Container -->
+            <div id="interactive-options" class="options-container">
+                <!-- Option pills injected here dynamically -->
+            </div>
+
+            <!-- Input Bar -->
+            <footer class="chat-footer">
+                <form id="chat-form" class="chat-input-form">
+                    <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off">
+                    <button type="submit" class="btn btn-send" id="send-btn">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
