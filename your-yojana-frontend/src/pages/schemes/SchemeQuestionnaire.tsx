@@ -315,13 +315,13 @@ export function SchemeQuestionnaire() {
 
   const renderStep = () => {
     switch (currentStep) {
-      case 0: return <Step1 />
-      case 1: return <Step2 />
-      case 2: return <Step3 />
-      case 3: return <Step4 />
-      case 4: return <Step5 />
-      case 5: return <Step6 />
-      case 6: return <Step7 />
+      case 0: return Step1()
+      case 1: return Step2()
+      case 2: return Step3()
+      case 3: return Step4()
+      case 4: return Step5()
+      case 5: return Step6()
+      case 6: return Step7()
       default: return null
     }
   }
