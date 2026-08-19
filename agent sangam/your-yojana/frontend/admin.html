@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your Yojana Administration & Governance Portal — analytics, AI transparency, and oversight for the civic complaint resolution system.">
+    <title>Administration &amp; Governance | Your Yojana</title>
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="portal-wrapper">
+
+    <!-- ═══════════════════════════════════════════════════
+         ADMIN HEADER
+    ═══════════════════════════════════════════════════ -->
+    <header class="admin-header">
+        <!-- Brand -->
+        <div class="admin-header__brand">
+            <div class="admin-emblem" aria-label="Your Yojana admin emblem">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+            </div>
+            <div>
+                <div class="admin-header__name">Your Yojana</div>
+                <div class="admin-header__portal">Administration &amp; Governance</div>
+            </div>
+        </div>
+
+        <!-- Right Controls -->
+        <div class="admin-header__right">
+            <div class="system-health" id="systemHealthEl">
+                <div class="health-dot"></div>
+                <span id="systemHealthLabel">Checking…</span>
+            </div>
+
+            <button class="header-btn" id="adminRefreshBtn" title="Refresh data" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-md);color:var(--text-muted);transition:all var(--trans-fast)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+                    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+                </svg>
+            </button>
+
+            <button class="header-btn" title="Notifications" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-md);color:var(--text-muted)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>
+                </svg>
+            </button>
+
+            <div class="admin-officer" role="button">
+                <div class="admin-officer__avatar">SA</div>
+                <span class="admin-officer__name">Sys. Admin</span>
+            </div>
+
+            <button class="btn btn--ghost btn--sm">
+                <a href="index.html" style="color:inherit;display:flex;align-items:center;gap:5px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    Citizen Portal
+                </a>
+            </button>
+            <button class="btn btn--ghost btn--sm">
+                <a href="government.html" style="color:inherit;display:flex;align-items:center;gap:5px">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    Gov. Portal
+                </a>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════
+         ADMIN SIDEBAR
+    ═══════════════════════════════════════════════════ -->
+    <aside class="admin-sidebar" role="navigation" aria-label="Admin navigation">
+        <div style="padding:16px 0 0">
+            <div class="nav-section-label-admin">Overview</div>
+            <div class="admin-nav-item admin-nav-item--active" data-section="sectionOverview" role="button" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                </svg>
+                System Overview
+            </div>
+
+            <div class="nav-section-label-admin" style="margin-top:10px">Analytics</div>
+            <div class="admin-nav-item" data-section="sectionDept" role="button" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+                </svg>
+                Department Analytics
+            </div>
+            <div class="admin-nav-item" data-section="sectionPriority" role="button" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+                Priority Analytics
+            </div>
+            <div class="admin-nav-item" data-section="sectionResolution" role="button" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Resolution Analytics
+            </div>
+            <div class="admin-nav-item" data-section="sectionInfrastructure" role="button" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Infrastructure Overview
+            </div>
+
+            <div class="nav-section-label-admin" style="margin-top:10px">Governance</div>
+            <div class="admin-nav-item" data-section="sectionTransparency" role="button" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                AI Transparency
+            </div>
+            <div class="admin-nav-item" data-section="sectionComplaints" role="button" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/>
+                </svg>
+                All Complaints
+            </div>
+        </div>
+
+        <div class="admin-sidebar__footer">
+            <div class="admin-nav-item" role="button" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                Sign Out
+            </div>
+        </div>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════════════
+         ADMIN MAIN CONTENT
+    ═══════════════════════════════════════════════════ -->
+    <main class="admin-main" id="adminMain" role="main">
+
+        <!-- ─ SECTION: OVERVIEW ─────────────────────────── -->
+        <section id="sectionOverview">
+            <div class="section-header" style="margin-bottom:16px">
+                <div>
+                    <h1 class="page-title" style="font-size:20px;font-weight:700;color:var(--text-primary);letter-spacing:-0.02em">System Overview</h1>
+                    <p class="page-subtitle" style="font-size:12.5px;color:var(--text-muted);margin-top:3px">Live statistics from the civic resolution platform</p>
+                </div>
+            </div>
+
+            <!-- KPI Row -->
+            <div class="admin-kpi-row" id="adminKpiRow" role="region" aria-label="System KPIs">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- ─ SECTION: DEPARTMENT ANALYTICS ────────────── -->
+        <section id="sectionDept">
+            <div class="admin-section">
+                <div class="admin-section__header">
+                    <div>
+                        <div class="admin-section__title">Department Performance</div>
+                        <div class="admin-section__subtitle">Complaint volume and resolution status by department</div>
+                    </div>
+                </div>
+                <div class="admin-section__body">
+                    <!-- Department Chart + Table -->
+                    <div class="chart-grid">
+                        <div class="chart-panel">
+                            <div class="chart-panel__header">
+                                <div class="chart-panel__title">Complaint Volume by Department</div>
+                                <div class="chart-panel__sub">Sorted by total complaints</div>
+                            </div>
+                            <div class="chart-panel__body">
+                                <div class="chart-canvas-wrap chart-canvas-wrap--tall">
+                                    <canvas id="deptChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-panel">
+                            <div class="chart-panel__header">
+                                <div class="chart-panel__title">Department Breakdown</div>
+                                <div class="chart-panel__sub">Pending vs resolved per department</div>
+                            </div>
+                            <div class="chart-panel__body" style="padding:0">
+                                <table class="dept-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Department</th>
+                                            <th>Volume</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="deptTableBody">
+                                        <!-- Populated by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─ SECTION: PRIORITY ANALYTICS ──────────────── -->
+        <section id="sectionPriority">
+            <div class="admin-section">
+                <div class="admin-section__header">
+                    <div>
+                        <div class="admin-section__title">Priority Analytics</div>
+                        <div class="admin-section__subtitle">Distribution, scores, and high-impact categories</div>
+                    </div>
+                </div>
+                <div class="admin-section__body">
+                    <div class="chart-grid">
+                        <!-- Donut Chart -->
+                        <div class="chart-panel">
+                            <div class="chart-panel__header">
+                                <div class="chart-panel__title">Priority Distribution</div>
+                                <div class="chart-panel__sub">Critical · High · Medium · Low</div>
+                            </div>
+                            <div class="chart-panel__body" style="display:flex;align-items:center;gap:24px">
+                                <div style="width:160px;height:160px;flex-shrink:0">
+                                    <canvas id="priorityDonut"></canvas>
+                                </div>
+                                <div id="priorityLegend" class="priority-legend" style="flex:1">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category Insights -->
+                        <div class="chart-panel">
+                            <div class="chart-panel__header">
+                                <div style="display:flex;justify-content:space-between;align-items:center">
+                                    <div>
+                                        <div class="chart-panel__title">Top Categories by Avg. Score</div>
+                                        <div class="chart-panel__sub">Highest-impact complaint types</div>
+                                    </div>
+                                    <div style="text-align:right">
+                                        <div style="font-size:10.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em">Avg. Score</div>
+                                        <div style="font-size:20px;font-weight:700;color:var(--accent)" id="avgScoreEl">—</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-panel__body" id="categoryInsights">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─ SECTION: RESOLUTION ANALYTICS ─────────────── -->
+        <section id="sectionResolution">
+            <div class="admin-section">
+                <div class="admin-section__header">
+                    <div>
+                        <div class="admin-section__title">Resolution Analytics</div>
+                        <div class="admin-section__subtitle">Live status funnel from GET /dashboard/stats — no fabricated metrics</div>
+                    </div>
+                </div>
+                <div class="admin-section__body">
+                    <div class="admin-kpi-row" id="resolutionKpiRow"></div>
+                    <div class="resolution-funnel" id="resolutionFunnel" style="margin-top:16px"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─ SECTION: INFRASTRUCTURE OVERVIEW ──────────── -->
+        <section id="sectionInfrastructure">
+            <div class="admin-section">
+                <div class="admin-section__header">
+                    <div>
+                        <div class="admin-section__title">Infrastructure Overview</div>
+                        <div class="admin-section__subtitle">Category and location patterns from registered complaints</div>
+                    </div>
+                    <a href="civic-map.html" class="btn btn--outline btn--sm" style="text-decoration:none">Open Civic Map →</a>
+                </div>
+                <div class="admin-section__body">
+                    <div class="chart-grid">
+                        <div class="chart-panel">
+                            <div class="chart-panel__header">
+                                <div class="chart-panel__title">Issue Categories</div>
+                                <div class="chart-panel__sub">From complaint records</div>
+                            </div>
+                            <div class="chart-panel__body" id="infraCategoryList"></div>
+                        </div>
+                        <div class="chart-panel">
+                            <div class="chart-panel__header">
+                                <div class="chart-panel__title">Top Locations</div>
+                                <div class="chart-panel__sub">Most reported public issue locations</div>
+                            </div>
+                            <div class="chart-panel__body" id="infraLocationList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─ SECTION: AI TRANSPARENCY ──────────────────── -->
+        <section id="sectionTransparency">
+            <div class="transparency-section" role="region" aria-label="AI Governance and Transparency">
+                <div class="transparency-header">
+                    <div>
+                        <div class="transparency-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:6px;color:var(--accent)">
+                                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                            AI Governance &amp; Decision Transparency
+                        </div>
+                        <div class="transparency-subtitle">How Your Yojana's AI agents assess, prioritize, and route civic complaints</div>
+                    </div>
+                    <span class="ai-label">⚙ AI-assisted — not autonomous</span>
+                </div>
+
+                <div class="transparency-body">
+                    <div class="agent-status-banner agent-status-banner--active" style="grid-column:1/-1">CURRENTLY ACTIVE</div>
+
+                    <!-- Card 1: How classification works -->
+                    <div class="transparency-card">
+                        <div class="transparency-card__title">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            Complaint Understanding Agent
+                            <span class="agent-badge agent-badge--active">ACTIVE</span>
+                        </div>
+                        <div class="transparency-card__body">
+                            <p>Each complaint is analyzed by an LLM (Groq — openai/gpt-oss-120b). The agent extracts:</p>
+                            <ul style="margin:8px 0 0 14px;list-style:disc;font-size:12.5px;color:var(--text-muted);line-height:1.75">
+                                <li>Category &amp; core issue</li>
+                                <li>Health risk / safety risk flags</li>
+                                <li>Essential service disruption flag</li>
+                                <li>Vulnerable population affected</li>
+                                <li>Number and unit of people affected</li>
+                                <li>Duration of issue (days)</li>
+                                <li>Location (if explicitly mentioned)</li>
+                            </ul>
+                            <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">
+                                The agent is strictly instructed not to invent information. If unknown, values default to 0 or false.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Priority Scoring -->
+                    <div class="transparency-card">
+                        <div class="transparency-card__title">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+                                <line x1="6" y1="20" x2="6" y2="14"/>
+                            </svg>
+                            Priority Agent
+                            <span class="agent-badge agent-badge--active">ACTIVE</span>
+                        </div>
+                        <div class="transparency-card__body">
+                            <p>A rule-based scoring engine produces a 0–100 priority score using transparent, auditable weights:</p>
+                            <table class="scoring-table" style="margin-top:8px">
+                                <thead><tr><th>Factor</th><th style="text-align:right">Points</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Public safety risk</td><td class="pts">+30</td></tr>
+                                    <tr><td>Health risk</td><td class="pts">+25</td></tr>
+                                    <tr><td>Essential service disruption</td><td class="pts">+20</td></tr>
+                                    <tr><td>≥1000 people/families affected</td><td class="pts">+15</td></tr>
+                                    <tr><td>≥500 people/families affected</td><td class="pts">+12</td></tr>
+                                    <tr><td>≥100 people/families affected</td><td class="pts">+8</td></tr>
+                                    <tr><td>Any people/families affected</td><td class="pts">+3</td></tr>
+                                    <tr><td>Vulnerable population</td><td class="pts">+10</td></tr>
+                                    <tr><td>Duration (2 pts/day, max 10)</td><td class="pts">up to +10</td></tr>
+                                </tbody>
+                            </table>
+                            <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">Score capped at 100. No factor is hidden or unexplainable.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Priority Levels -->
+                    <div class="transparency-card">
+                        <div class="transparency-card__title">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+                            </svg>
+                            Priority Levels &amp; Response Times
+                        </div>
+                        <div class="transparency-card__body">
+                            <p>Scores are mapped to priority levels with mandated response times:</p>
+                            <div class="level-table">
+                                <div class="level-row level-row--critical">
+                                    <span class="level-row__range">CRITICAL · Score ≥ 80</span>
+                                    <span class="level-row__time">Response within 24h</span>
+                                </div>
+                                <div class="level-row level-row--high">
+                                    <span class="level-row__range">HIGH · Score 60–79</span>
+                                    <span class="level-row__time">Response within 48h</span>
+                                </div>
+                                <div class="level-row level-row--medium">
+                                    <span class="level-row__range">MEDIUM · Score 40–59</span>
+                                    <span class="level-row__time">Response within 72h</span>
+                                </div>
+                                <div class="level-row level-row--low">
+                                    <span class="level-row__range">LOW · Score &lt; 40</span>
+                                    <span class="level-row__time">Response within 5 days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Department Routing -->
+                    <div class="transparency-card">
+                        <div class="transparency-card__title">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                                <polyline points="9 22 9 12 15 12 15 22"/>
+                            </svg>
+                            Routing Agent
+                            <span class="agent-badge agent-badge--active">ACTIVE</span>
+                        </div>
+                        <div class="transparency-card__body">
+                            <p>A rule-based keyword router matches the complaint category and issue to the correct government department. Departments include:</p>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;margin-top:8px;font-size:12px;color:var(--text-muted)">
+                                <span>• Water Supply Department</span>
+                                <span>• Sanitation Department</span>
+                                <span>• Roads &amp; Highways Dept.</span>
+                                <span>• Electrical Department</span>
+                                <span>• Traffic Department</span>
+                                <span>• Public Health Department</span>
+                                <span>• Education Department</span>
+                                <span>• Social Welfare Department</span>
+                                <span>• Law Enforcement Dept.</span>
+                                <span>• Municipal Grievance Cell</span>
+                            </div>
+                            <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">
+                                Confidence: 95% for keyword matches; 50% for fallback to Municipal Grievance Cell.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="transparency-card">
+                        <div class="transparency-card__title">
+                            Vision Agent
+                            <span class="agent-badge agent-badge--active">ACTIVE</span>
+                        </div>
+                        <div class="transparency-card__body">
+                            <p>Analyses citizen photo evidence via Groq multimodal model <code>qwen/qwen3.6-27b</code>. Detects potholes, road damage, standing water, garbage, blocked drains, broken streetlights, and related hazards. Findings enrich Priority Agent scoring. <strong>Advisory only.</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="agent-status-banner agent-status-banner--future" style="grid-column:1/-1">FUTURE</div>
+
+                    <div class="transparency-card transparency-card--future">
+                        <div class="transparency-card__title">
+                            Future Spatial Intelligence
+                            <span class="agent-badge agent-badge--future">FUTURE</span>
+                        </div>
+                        <div class="transparency-card__body">
+                            <p>Identifies geographic patterns across civic infrastructure issues. <strong>Not operational.</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Human Oversight -->
+                    <div class="transparency-card" style="grid-column:1/-1">
+                        <div class="transparency-card__title">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                            </svg>
+                            Human Review &amp; Officer Override
+                        </div>
+                        <div class="transparency-card__body" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                            <div>
+                                <p style="color:var(--text-secondary)">
+                                    <strong>AI assessments are advisory, not final.</strong> Government officers review every complaint in the Resolution Portal and make the final call on assignment and resolution. The AI recommendation is clearly labelled as AI-assisted on every case.
+                                </p>
+                            </div>
+                            <div class="highlight-box">
+                                <strong style="color:var(--text-primary)">Status Workflow</strong><br>
+                                Every complaint follows a transparent, human-controlled lifecycle:<br><br>
+                                <code style="font-size:12px;color:var(--accent)">PENDING → ASSIGNED → IN_PROGRESS → RESOLVED</code><br><br>
+                                Officers update status through the Resolution Portal. Each transition is confirmed and logged.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ─ SECTION: COMPLAINT MONITORING ─────────────── -->
+        <section id="sectionComplaints">
+            <div class="admin-section">
+                <div class="admin-section__header">
+                    <div>
+                        <div class="admin-section__title">All Complaints</div>
+                        <div class="admin-section__subtitle">Complete complaint register — click any row to inspect AI reasoning</div>
+                    </div>
+                    <span class="count-badge" id="adminTableCount">—</span>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="admin-table-search">
+                    <div class="search-input-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input type="text" id="adminSearch" placeholder="Search by ID, category, location, department…" aria-label="Search complaints">
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div style="overflow-x:auto">
+                    <table class="data-table" role="table" aria-label="All complaints">
+                        <thead>
+                            <tr>
+                                <th>Complaint ID</th>
+                                <th>Category</th>
+                                <th>Priority</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                                <th>Location</th>
+                                <th>Filed</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+</div><!-- /portal-wrapper -->
+
+<!-- ═══════════════════════════════════════════════════
+     ADMIN COMPLAINT DETAIL MODAL
+═══════════════════════════════════════════════════ -->
+<div class="admin-detail-modal" id="adminDetailModal" role="dialog" aria-modal="true" aria-label="Complaint detail">
+    <div class="admin-detail-box" id="adminDetailBox">
+        <!-- Populated by JS -->
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     TOAST
+═══════════════════════════════════════════════════ -->
+<div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Scripts -->
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

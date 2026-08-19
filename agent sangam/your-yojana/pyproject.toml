@@ -1,0 +1,28 @@
+[project]
+name = "priority-ai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "powerhousedan", email = "rerorox1004@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy",
+    "pydantic",
+    "python-dotenv",
+    "langgraph",
+    "langchain-core",
+    "langchain-groq",
+    "python-multipart",
+    "groq>=0.37.1",
+]
+
+[project.scripts]
+priority-ai = "priority_ai:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
