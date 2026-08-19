@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Your Yojana — Lodge your civic complaint. AI-powered prioritization ensures your issue reaches the right government department instantly.">
+    <title>Lodge a Complaint | Your Yojana</title>
+    <link rel="stylesheet" href="css/design-system.css">
+
+    <style>
+        /* ── Page Layout ─────────────────────────────────────── */
+        body {
+            background: var(--warm-50);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Citizen Header ──────────────────────────────────── */
+        .citizen-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            height: 60px;
+            background: var(--navy-900);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 12px rgba(12,27,51,0.25);
+        }
+
+        .citizen-header__brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .citizen-emblem {
+            width: 30px;
+            height: 30px;
+            background: rgba(255,153,51,0.15);
+            border: 1.5px solid rgba(255,153,51,0.3);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--saffron-400);
+        }
+
+        .citizen-header__name {
+            font-size: 14px;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: -0.02em;
+        }
+
+        .citizen-header__tag {
+            font-size: 9.5px;
+            color: rgba(255,255,255,0.4);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+
+        .citizen-header__nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 5px 11px;
+            font-size: 12.5px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.55);
+            border-radius: var(--radius-md);
+            transition: all var(--trans-fast);
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.09);
+            color: rgba(255,255,255,0.95);
+        }
+
+        /* ── Hero / Intro ────────────────────────────────────── */
+        .hero {
+            text-align: center;
+            padding: 52px 24px 36px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            background: var(--navy-100);
+            border: 1px solid rgba(36,83,168,0.2);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--navy-600);
+            margin-bottom: 20px;
+        }
+
+        .hero__title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--navy-900);
+            letter-spacing: -0.035em;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .hero__sub {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ── Main Content ────────────────────────────────────── */
+        .citizen-main {
+            flex: 1;
+            max-width: 720px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px 48px;
+        }
+
+        /* ── Complaint Form Card ─────────────────────────────── */
+        .form-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .form-card__header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .form-card__title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-card__sub {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .form-card__body {
+            padding: 22px 22px 20px;
+        }
+
+        /* ── Textarea ────────────────────────────────────────── */
+        .complaint-area-wrap {
+            position: relative;
+        }
+
+        .complaint-area {
+            width: 100%;
+            min-height: 148px;
+            padding: 14px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-default);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            line-height: 1.65;
+            resize: vertical;
+            outline: none;
+            transition: border-color var(--trans-fast);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .complaint-area:focus {
+            border-color: var(--accent);
+        }
+
+        .complaint-area::placeholder {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .char-count {
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            font-size: 11px;
+            color: var(--text-disabled);
+            pointer-events: none;
+        }
+
+        .char-count--warn {
+            color: var(--medium-text);
+        }
+
+        .char-count--over {
+            color: var(--critical-text);
+        }
+
+        /* ── Tips ────────────────────────────────────────────── */
+        .tips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .tip-chip {
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: 100px;
+            font-size: 11.5px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all var(--trans-fast);
+            user-select: none;
+        }
+
+        .tip-chip:hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--text-secondary);
+            border-color: var(--border-default);
+        }
+
+        .tips__label {
+            font-size: 11px;
+            color: var(--text-disabled);
+            align-self: center;
+        }
+
+        /* ── Submit Row ──────────────────────────────────────── */
+        .submit-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 18px;
+            gap: 12px;
+        }
+
+        .submit-note {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 12px 26px;
+            background: var(--saffron-400);
+            border: none;
+            border-radius: var(--radius-lg);
+            color: var(--navy-900);
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all var(--trans-base);
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-family: inherit;
+            box-shadow: 0 4px 12px rgba(232,137,31,0.3);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--saffron-500);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(232,137,31,0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ── Photo Evidence (local preview only) ──────────────── */
+        .photo-evidence {
+            margin-top: 18px;
+            padding: 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+        }
+
+        .photo-evidence__title {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .photo-evidence__sub {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .photo-evidence__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .photo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-default);
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all var(--trans-fast);
+        }
+
+        .photo-btn:hover {
+            border-color: var(--accent-border);
+            color: var(--accent);
+        }
+
+        .photo-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .photo-preview-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 7px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-base);
+        }
+
+        .photo-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-preview-item__remove {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 22px;
+            height: 22px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .photo-evidence__note {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 10px 0 0;
+        }
+
+        .vision-placeholder {
+            margin-top: 14px;
+            padding: 14px;
+            border: 1px dashed var(--border-default);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .vision-placeholder__title {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .vision-placeholder__body {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin: 0 0 10px;
+        }
+
+        .vision-placeholder__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .vision-placeholder__tags span {
+            font-size: 10.5px;
+            padding: 3px 8px;
+            border-radius: 100px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+        }
+
+        .vision-placeholder__future {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-disabled);
+            margin: 0;
+        }
+
+        .vision-panel {
+            border-style: solid;
+            border-color: var(--accent-border);
+        }
+
+        .vision-result-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .vision-result-meta strong {
+            color: var(--text-primary);
+        }
+
+        .photo-evidence__header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        /* ── Processing Panel ────────────────────────────────── */
+        .processing-panel {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .processing-panel.active {
+            display: flex;
+        }
+
+        .ai-spinner {
+            width: 52px;
+            height: 52px;
+            position: relative;
+        }
+
+        .ai-spinner__ring {
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--border-subtle);
+            border-radius: 50%;
+        }
+
+        .ai-spinner__arc {
+            position: absolute;
+            inset: 0;
+            border: 2px solid transparent;
+            border-top-color: var(--saffron-400);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ai-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .ai-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            background: var(--warm-50);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            font-size: 12.5px;
+            color: var(--text-muted);
+            opacity: 0.4;
+            transition: all 0.4s ease;
+        }
+
+        .ai-step.active {
+            opacity: 1;
+            border-color: rgba(36,83,168,0.25);
+            background: var(--navy-100);
+            color: var(--navy-600);
+        }
+
+        .ai-step.done {
+            opacity: 1;
+            border-color: var(--low-border);
+            color: var(--low-text);
+            background: var(--gov-green-100);
+        }
+
+        .ai-step__dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* ── Result Card ─────────────────────────────────────── */
+        .result-card {
+            display: none;
+            flex-direction: column;
+        }
+
+        .result-card.active {
+            display: flex;
+        }
+
+        .result-header {
+            padding: 20px 22px 18px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .result-success-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(76, 175, 80, 0.12);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--low-text);
+            font-size: 18px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .result-id-block {
+            flex: 1;
+        }
+
+        .result-label {
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .result-complaint-id {
+            font-family: 'SFMono-Regular', monospace;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: 0.02em;
+        }
+
+        .result-ts {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .result-body {
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .result-priority-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Score Circle */
+        .res-score-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 2px solid;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .res-score-circle--critical {
+            border-color: var(--critical-border);
+            background: var(--critical-bg);
+            color: var(--critical-text);
+        }
+
+        .res-score-circle--high {
+            border-color: var(--high-border);
+            background: var(--high-bg);
+            color: var(--high-text);
+        }
+
+        .res-score-circle--medium {
+            border-color: var(--medium-border);
+            background: var(--medium-bg);
+            color: var(--medium-text);
+        }
+
+        .res-score-circle--low {
+            border-color: var(--low-border);
+            background: var(--low-bg);
+            color: var(--low-text);
+        }
+
+        .res-score-circle__num {
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .res-score-circle__max {
+            font-size: 9px;
+            opacity: 0.6;
+            font-weight: 500;
+        }
+
+        .res-priority-info {}
+
+        .res-priority-level {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            margin-bottom: 4px;
+        }
+
+        .res-priority-response {
+            font-size: 12.5px;
+            color: var(--text-muted);
+        }
+
+        .res-priority-response strong {
+            color: var(--text-secondary);
+        }
+
+        /* Info grid */
+        .result-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .ri-item__label {
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .ri-item__value {
+            font-size: 13.5px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Factors */
+        .result-factors {
+            background: var(--bg-base);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .result-factors__header {
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.025);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .result-factors__title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .ai-badge {
+            padding: 2px 8px;
+            background: var(--accent-dim);
+            border: 1px solid var(--accent-border);
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .result-factors__body {
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .rfactor-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rfactor-name {
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            min-width: 180px;
+            flex-shrink: 0;
+        }
+
+        .rfactor-bar {
+            flex: 1;
+            height: 4px;
+            background: var(--border-subtle);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .rfactor-bar__fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.6s ease;
+        }
+
+        .rfactor-pts {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 32px;
+            text-align: right;
+        }
+
+        /* What happens next */
+        .result-next {
+            background: rgba(91, 156, 246, 0.05);
+            border: 1px solid rgba(91, 156, 246, 0.18);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .result-next__title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #5B9CF6;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
+
+        .next-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .next-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .next-step__num {
+            width: 18px;
+            height: 18px;
+            background: rgba(91, 156, 246, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: #5B9CF6;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Result Actions */
+        .result-actions {
+            padding: 16px 22px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: var(--bg-card);
+        }
+
+        .file-another-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: var(--accent-dim);
+            border: 1px solid var(--accent-border);
+            border-radius: 7px;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--trans-base);
+        }
+
+        .file-another-btn:hover {
+            background: rgba(224, 123, 26, 0.2);
+        }
+
+        .track-note {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .track-id {
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ── Error State ─────────────────────────────────────── */
+        .error-msg {
+            display: none;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: var(--critical-bg);
+            border: 1px solid var(--critical-border);
+            border-radius: 7px;
+            font-size: 13px;
+            color: var(--critical-text);
+            line-height: 1.5;
+        }
+
+        .error-msg.active {
+            display: flex;
+        }
+
+        .error-msg svg {
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── How it works ────────────────────────────────────── */
+        .how-it-works {
+            margin-top: 20px;
+            padding: 18px 20px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+        }
+
+        .hiw-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .hiw-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .hiw-step {
+            text-align: center;
+        }
+
+        .hiw-step__icon {
+            width: 34px;
+            height: 34px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            color: var(--accent);
+        }
+
+        .hiw-step__label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+
+        .hiw-step__sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ── Footer ──────────────────────────────────────────── */
+        .citizen-footer {
+            padding: 18px 24px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-disabled);
+            border-top: 1px solid var(--border-subtle);
+            background: var(--bg-surface);
+        }
+
+        /* ── Priority badge (inline) ─────────────────────────── */
+        .prio-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 9px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            border-radius: 4px;
+            border: 1px solid;
+        }
+
+        .prio-badge--critical {
+            color: var(--critical-text);
+            background: var(--critical-bg);
+            border-color: var(--critical-border);
+        }
+
+        .prio-badge--high {
+            color: var(--high-text);
+            background: var(--high-bg);
+            border-color: var(--high-border);
+        }
+
+        .prio-badge--medium {
+            color: var(--medium-text);
+            background: var(--medium-bg);
+            border-color: var(--medium-border);
+        }
+
+        .prio-badge--low {
+            color: var(--low-text);
+            background: var(--low-bg);
+            border-color: var(--low-border);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Header ──────────────────────────────────────────── -->
+    <header class="citizen-header">
+        <div class="citizen-header__brand">
+            <div class="citizen-emblem">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+            </div>
+            <div>
+                <div class="citizen-header__name">Your Yojana</div>
+                <div class="citizen-header__tag">Civic Resolution Platform</div>
+            </div>
+        </div>
+        <nav class="citizen-header__nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="schemes.html" class="nav-link">Schemes</a>
+            <a href="citizen.html" class="nav-link" style="color:var(--accent)">Report Issue</a>
+            <a href="track.html" class="nav-link">Track Complaint</a>
+            <a href="civic-map.html" class="nav-link">Civic Map</a>
+            <a href="saferoute.html" class="nav-link">SafeRoute</a>
+            <a href="government.html" class="nav-link">Officer Portal</a>
+            <a href="admin.html" class="nav-link">Admin</a>
+        </nav>
+    </header>
+
+    <!-- ── Hero ────────────────────────────────────────────── -->
+    <div class="hero">
+        <div class="hero__badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+            AI-Powered Civic Resolution
+        </div>
+        <h1 class="hero__title">Lodge Your Complaint</h1>
+        <p class="hero__sub">
+            Describe your civic issue in plain language. Our AI instantly assesses urgency,
+            routes it to the right department, and ensures nothing is overlooked.
+        </p>
+    </div>
+
+    <!-- ── Main ─────────────────────────────────────────────── -->
+    <main class="citizen-main">
+
+        <!-- Complaint Form Card -->
+        <div class="form-card" id="formCard">
+            <div class="form-card__header">
+                <div>
+                    <div class="form-card__title">Describe Your Issue</div>
+                    <div class="form-card__sub">Write in any language — include location and affected count if possible
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form State -->
+            <div class="form-card__body" id="formState">
+                <div class="complaint-area-wrap">
+                    <textarea class="complaint-area" id="complaintText" maxlength="2000"
+                        placeholder="Example: There has been no drinking water supply in Ward 7, Andheri West for the past 4 days. Around 300 families are affected and the situation is becoming critical…"
+                        aria-label="Complaint text"></textarea>
+                    <span class="char-count" id="charCount">0 / 2000</span>
+                </div>
+
+                <!-- Example prompts -->
+                <div class="tips">
+                    <span class="tips__label">Try:</span>
+                    <span class="tip-chip" onclick="fillExample(0)">No water supply</span>
+                    <span class="tip-chip" onclick="fillExample(1)">Pothole on road</span>
+                    <span class="tip-chip" onclick="fillExample(2)">Street light out</span>
+                    <span class="tip-chip" onclick="fillExample(3)">Garbage not collected</span>
+                    <span class="tip-chip" onclick="fillExample(4)">Sewage overflow</span>
+                </div>
+
+                <!-- Photo Evidence -->
+                <div class="photo-evidence" id="photoEvidence">
+                    <div class="photo-evidence__header">
+                        <div>
+                            <div class="photo-evidence__title">Photo Evidence</div>
+                            <div class="photo-evidence__sub">Optional · Max 3 photos · Analysed by Groq Vision when added</div>
+                        </div>
+                        <button type="button" class="photo-btn" id="runVisionBtn" onclick="runVisionAssessment()" style="display:none">
+                            Analyse Photos
+                        </button>
+                    </div>
+                    <div class="photo-evidence__actions">
+                        <label class="photo-btn" for="photoCaptureInput">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                            Take Photo
+                        </label>
+                        <label class="photo-btn" for="photoUploadInput">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                            Upload Photo
+                        </label>
+                        <input type="file" id="photoCaptureInput" accept="image/*" capture="environment" hidden>
+                        <input type="file" id="photoUploadInput" accept="image/*" multiple hidden>
+                    </div>
+                    <div class="photo-preview-grid" id="photoPreviewGrid"></div>
+                    <p class="photo-evidence__note" id="photoBackendNote">
+                        Photos are optional. Text complaints still submit without photos. When photos are attached, they are sent to the Vision Agent for AI-assisted assessment.
+                    </p>
+                </div>
+
+                <!-- AI Visual Assessment (live) -->
+                <div class="vision-placeholder vision-panel" id="visionPlaceholder" role="status">
+                    <div class="vision-placeholder__title" style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                        <span>AI Visual Assessment</span>
+                        <span class="ai-badge" id="visionStatusBadge">READY</span>
+                    </div>
+                    <div id="visionIdle">
+                        <p class="vision-placeholder__body">
+                            Add a photo to run live visual assessment via Groq. Possible detections:
+                        </p>
+                        <div class="vision-placeholder__tags">
+                            <span>Pothole</span><span>Road damage</span><span>Standing water</span>
+                            <span>Garbage</span><span>Blocked drain</span><span>Broken streetlight</span>
+                        </div>
+                    </div>
+                    <div id="visionLoading" style="display:none">
+                        <p class="vision-placeholder__body">Analysing photo evidence with Vision Agent…</p>
+                    </div>
+                    <div id="visionError" style="display:none">
+                        <p class="vision-placeholder__body" id="visionErrorText" style="color:var(--critical-text)"></p>
+                        <button type="button" class="photo-btn" onclick="runVisionAssessment()">Retry</button>
+                    </div>
+                    <div id="visionResult" style="display:none">
+                        <div class="vision-result-meta" id="visionResultMeta"></div>
+                        <p class="vision-placeholder__body" id="visionAnalysisText"></p>
+                        <div class="vision-placeholder__tags" id="visionDetectionTags"></div>
+                        <p class="vision-placeholder__future" id="visionAdvisory" style="color:var(--text-muted)">
+                            AI-ASSISTED ASSESSMENT — advisory only; officers retain final authority.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Error -->
+                <div class="error-msg" id="errorMsg">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    <span id="errorText">Something went wrong.</span>
+                </div>
+
+                <div class="submit-row">
+                    <p class="submit-note">
+                        Your complaint will be processed by AI and routed<br>to the appropriate government department.
+                    </p>
+                    <button class="submit-btn" id="submitBtn" onclick="submitComplaint()">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                        Submit Complaint
+                    </button>
+                </div>
+            </div>
+
+            <!-- Processing State -->
+            <div class="processing-panel" id="processingState">
+                <div class="ai-spinner">
+                    <div class="ai-spinner__ring"></div>
+                    <div class="ai-spinner__arc"></div>
+                </div>
+                <div style="text-align:center">
+                    <div style="font-size:15px;font-weight:600;color:var(--text-primary);margin-bottom:4px">Processing
+                        your complaint…</div>
+                    <div style="font-size:12.5px;color:var(--text-muted)">AI agents are analyzing your issue</div>
+                </div>
+                <div class="ai-steps">
+                    <div class="ai-step" id="step0" style="display:none">
+                        <div class="ai-step__dot"></div>
+                        Vision Agent — Analysing photo evidence
+                    </div>
+                    <div class="ai-step" id="step1">
+                        <div class="ai-step__dot"></div>
+                        Agent 1 — Understanding complaint
+                    </div>
+                    <div class="ai-step" id="step2">
+                        <div class="ai-step__dot"></div>
+                        Agent 2 — Calculating priority score
+                    </div>
+                    <div class="ai-step" id="step3">
+                        <div class="ai-step__dot"></div>
+                        Agent 3 — Routing to department
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result State -->
+            <div class="result-card" id="resultState">
+                <!-- Header with ID -->
+                <div class="result-header">
+                    <div class="result-success-icon">✓</div>
+                    <div class="result-id-block">
+                        <div class="result-label">Complaint Registered</div>
+                        <div class="result-complaint-id" id="rComplaintId">—</div>
+                        <div class="result-ts" id="rTimestamp">—</div>
+                    </div>
+                    <div id="rPriorityBadge"></div>
+                </div>
+
+                <div class="result-body">
+                    <!-- Priority row -->
+                    <div class="result-priority-row">
+                        <div class="res-score-circle" id="rScoreCircle">
+                            <div class="res-score-circle__num" id="rScore">—</div>
+                            <div class="res-score-circle__max">/100</div>
+                        </div>
+                        <div class="res-priority-info">
+                            <div class="res-priority-level" id="rPriorityLevel">—</div>
+                            <div class="res-priority-response" id="rResponse">—</div>
+                        </div>
+                    </div>
+
+                    <!-- Info grid: category, location, department -->
+                    <div class="result-info-grid">
+                        <div>
+                            <div class="ri-item__label">Category</div>
+                            <div class="ri-item__value" id="rCategory">—</div>
+                        </div>
+                        <div>
+                            <div class="ri-item__label">Location</div>
+                            <div class="ri-item__value" id="rLocation">—</div>
+                        </div>
+                        <div style="grid-column:1/-1">
+                            <div class="ri-item__label">Assigned Department</div>
+                            <div class="ri-item__value" id="rDepartment">—</div>
+                        </div>
+                    </div>
+
+                    <!-- AI factors -->
+                    <div class="result-factors">
+                        <div class="result-factors__header">
+                            <span class="result-factors__title">AI Scoring Factors</span>
+                            <span class="ai-badge">⚙ AI-assisted</span>
+                        </div>
+                        <div class="result-factors__body" id="rFactors">
+                            <p style="font-size:12.5px;color:var(--text-muted)">No scoring factors recorded.</p>
+                        </div>
+                    </div>
+
+                    <!-- What happens next -->
+                    <div class="result-next">
+                        <div class="result-next__title">What happens next</div>
+                        <div class="next-steps">
+                            <div class="next-step">
+                                <div class="next-step__num">1</div>
+                                Your complaint has been assigned to the <strong id="rDeptInline"
+                                    style="color:var(--text-secondary)">—</strong> and is now PENDING review.
+                            </div>
+                            <div class="next-step">
+                                <div class="next-step__num">2</div>
+                                A government officer will review and assign it. Response target: <strong
+                                    id="rResponseTime" style="color:var(--text-secondary)">—</strong>.
+                            </div>
+                            <div class="next-step">
+                                <div class="next-step__num">3</div>
+                                Track your complaint using ID <span id="rTrackId" class="track-id">—</span> in the
+                                Officer Portal.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <div class="track-note">
+                        Save your ID: <span class="track-id" id="rFooterId">—</span>
+                    </div>
+                    <button class="file-another-btn" onclick="resetForm()">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        File Another Complaint
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="how-it-works">
+            <div class="hiw-title">How it works</div>
+            <div class="hiw-steps">
+                <div class="hiw-step">
+                    <div class="hiw-step__icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 20h9" />
+                            <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+                        </svg>
+                    </div>
+                    <div class="hiw-step__label">You describe it</div>
+                    <div class="hiw-step__sub">In plain words, with as much detail as you have</div>
+                </div>
+                <div class="hiw-step">
+                    <div class="hiw-step__icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
+                    </div>
+                    <div class="hiw-step__label">AI prioritizes it</div>
+                    <div class="hiw-step__sub">3 AI agents score urgency and route to the right department</div>
+                </div>
+                <div class="hiw-step">
+                    <div class="hiw-step__icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                    </div>
+                    <div class="hiw-step__label">Officers resolve it</div>
+                    <div class="hiw-step__sub">Government officers action your complaint within the target time</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ── Footer ───────────────────────────────────────────── -->
+    <footer class="citizen-footer">
+        Your Yojana · Agentic AI Civic Governance Platform · All complaints are processed by AI and reviewed by
+        authorized government officers
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script>
+        // ── Example prompts ──────────────────────────────────────
+        const EXAMPLES = [
+            'There has been no drinking water supply in Ward 7, Andheri West for the past 4 days. Around 300 families including elderly residents are severely affected.',
+            'There is a massive pothole on MG Road near the bus stop at Sector 14. It has caused 3 accidents this week and urgent repair is needed.',
+            'The street lights on Nehru Chowk lane have been non-functional for over 2 weeks. The area is completely dark at night and residents feel unsafe.',
+            'Garbage has not been collected in our colony (Shantinagar, Block C) for 10 days. There is a massive pile-up causing a health hazard.',
+            'Sewage water is overflowing on Rajiv Gandhi Road near the school. Children are being exposed to contaminated water every day.'
+        ];
+
+        function fillExample(i) {
+            const ta = document.getElementById('complaintText');
+            ta.value = EXAMPLES[i];
+            updateCharCount();
+            ta.focus();
+        }
+
+        // ── Character count ──────────────────────────────────────
+        const ta = document.getElementById('complaintText');
+        const charCountEl = document.getElementById('charCount');
+
+        // ── Local photo + vision state ────────────────────────────
+        const MAX_PHOTOS = 3;
+        let localPhotos = []; // { id, file, url }
+        let latestVision = null;
+        let visionBusy = false;
+
+        function setVisionView(mode) {
+            ['visionIdle', 'visionLoading', 'visionError', 'visionResult'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            const target = document.getElementById(mode);
+            if (target) target.style.display = '';
+            const badge = document.getElementById('visionStatusBadge');
+            const runBtn = document.getElementById('runVisionBtn');
+            if (runBtn) runBtn.style.display = localPhotos.length ? '' : 'none';
+            if (!badge) return;
+            const map = {
+                visionIdle: 'READY',
+                visionLoading: 'ANALYSING',
+                visionError: 'ERROR',
+                visionResult: 'ACTIVE'
+            };
+            badge.textContent = map[mode] || 'READY';
+        }
+
+        function renderPhotoPreviews() {
+            const grid = document.getElementById('photoPreviewGrid');
+            if (!grid) return;
+            grid.innerHTML = localPhotos.map((p, idx) => `
+                <div class="photo-preview-item">
+                    <img src="${p.url}" alt="Evidence preview ${idx + 1}">
+                    <button type="button" class="photo-preview-item__remove" aria-label="Remove photo"
+                        onclick="removePhoto(${idx})">✕</button>
+                </div>`).join('');
+            const runBtn = document.getElementById('runVisionBtn');
+            if (runBtn) runBtn.style.display = localPhotos.length ? '' : 'none';
+        }
+
+        function fileToDataUrl(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = () => reject(new Error('Failed to read image'));
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Phone cameras produce 3–8 MB photos. Full resolution adds upload
+        // time and vision tokens without helping the assessment, so send a
+        // capped-size JPEG instead. Falls back to the original on any error.
+        const PHOTO_MAX_DIMENSION = 1600;
+        const PHOTO_JPEG_QUALITY = 0.82;
+
+        function shrinkImage(file) {
+            return new Promise(resolve => {
+                const objectUrl = URL.createObjectURL(file);
+                const img = new Image();
+
+                img.onload = () => {
+                    try {
+                        const scale = Math.min(
+                            1,
+                            PHOTO_MAX_DIMENSION / Math.max(img.width, img.height)
+                        );
+                        if (scale === 1 && file.size <= 400 * 1024) {
+                            URL.revokeObjectURL(objectUrl);
+                            resolve(null);
+                            return;
+                        }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = Math.round(img.width * scale);
+                        canvas.height = Math.round(img.height * scale);
+                        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                        URL.revokeObjectURL(objectUrl);
+                        resolve(canvas.toDataURL('image/jpeg', PHOTO_JPEG_QUALITY));
+                    } catch (_) {
+                        URL.revokeObjectURL(objectUrl);
+                        resolve(null);
+                    }
+                };
+
+                img.onerror = () => { URL.revokeObjectURL(objectUrl); resolve(null); };
+                img.src = objectUrl;
+            });
+        }
+
+        async function photosToDataUrls() {
+            const photos = localPhotos.slice(0, MAX_PHOTOS);
+            return Promise.all(photos.map(async p => {
+                const shrunk = await shrinkImage(p.file);
+                return shrunk || fileToDataUrl(p.file);
+            }));
+        }
+
+        function renderVisionResult(vision) {
+            latestVision = vision;
+            const meta = document.getElementById('visionResultMeta');
+            const analysis = document.getElementById('visionAnalysisText');
+            const tags = document.getElementById('visionDetectionTags');
+            if (meta) {
+                meta.innerHTML = `
+                    <span>Severity: <strong>${escHtml(vision.severity || '—')}</strong></span>
+                    <span>Score: <strong>${Math.round(vision.severity_score || 0)}/100</strong></span>
+                    <span>Confidence: <strong>${Math.round((vision.confidence || 0) * 100)}%</strong></span>
+                    <span>Category: <strong>${escHtml(vision.recommended_category || '—')}</strong></span>`;
+            }
+            if (analysis) {
+                analysis.textContent = vision.situation_analysis || vision.summary_for_priority || 'No analysis returned.';
+            }
+            if (tags) {
+                const dets = vision.detections || [];
+                tags.innerHTML = dets.length
+                    ? dets.map(d => `<span>${escHtml(d)}</span>`).join('')
+                    : '<span>No specific detections</span>';
+            }
+            setVisionView('visionResult');
+        }
+
+        async function runVisionAssessment() {
+            if (!localPhotos.length) {
+                setVisionView('visionIdle');
+                return;
+            }
+            if (visionBusy) return;
+            visionBusy = true;
+            setVisionView('visionLoading');
+            try {
+                const images = await photosToDataUrls();
+                const result = await api.assessVision(images, ta.value.trim());
+                renderVisionResult(result.vision || result);
+            } catch (err) {
+                latestVision = null;
+                const errEl = document.getElementById('visionErrorText');
+                if (errEl) errEl.textContent = err.message || 'Vision assessment failed.';
+                setVisionView('visionError');
+            } finally {
+                visionBusy = false;
+            }
+        }
+        window.runVisionAssessment = runVisionAssessment;
+
+        async function addPhotoFiles(fileList) {
+            const files = Array.from(fileList || []).filter(f => f.type.startsWith('image/'));
+            for (const file of files) {
+                if (localPhotos.length >= MAX_PHOTOS) {
+                    alert('Maximum 3 photos. Remove one to add another.');
+                    break;
+                }
+                const url = URL.createObjectURL(file);
+                localPhotos.push({ id: Date.now() + Math.random(), file, url });
+            }
+            renderPhotoPreviews();
+            if (localPhotos.length) {
+                await runVisionAssessment();
+            }
+        }
+
+        function removePhoto(index) {
+            const item = localPhotos[index];
+            if (item) URL.revokeObjectURL(item.url);
+            localPhotos.splice(index, 1);
+            latestVision = null;
+            renderPhotoPreviews();
+            if (localPhotos.length) runVisionAssessment();
+            else setVisionView('visionIdle');
+        }
+        window.removePhoto = removePhoto;
+
+        function clearLocalPhotos() {
+            localPhotos.forEach(p => URL.revokeObjectURL(p.url));
+            localPhotos = [];
+            latestVision = null;
+            renderPhotoPreviews();
+            setVisionView('visionIdle');
+            const cap = document.getElementById('photoCaptureInput');
+            const up = document.getElementById('photoUploadInput');
+            if (cap) cap.value = '';
+            if (up) up.value = '';
+        }
+
+        (function initPhotoInputs() {
+            const cap = document.getElementById('photoCaptureInput');
+            const up = document.getElementById('photoUploadInput');
+            if (cap) cap.addEventListener('change', e => {
+                addPhotoFiles(e.target.files);
+                e.target.value = '';
+            });
+            if (up) up.addEventListener('change', e => {
+                addPhotoFiles(e.target.files);
+                e.target.value = '';
+            });
+            setVisionView('visionIdle');
+        })();
+
+        function updateCharCount() {
+            const len = ta.value.length;
+            charCountEl.textContent = `${len} / 2000`;
+            charCountEl.className = 'char-count';
+            if (len > 1800) charCountEl.classList.add('char-count--warn');
+            if (len > 1980) charCountEl.classList.add('char-count--over');
+        }
+        ta.addEventListener('input', updateCharCount);
+
+        // ── States ───────────────────────────────────────────────
+        function showForm() {
+            document.getElementById('formState').style.display = 'block';
+            document.getElementById('processingState').classList.remove('active');
+            document.getElementById('resultState').classList.remove('active');
+        }
+        function showProcessing() {
+            document.getElementById('formState').style.display = 'none';
+            document.getElementById('processingState').classList.add('active');
+            document.getElementById('resultState').classList.remove('active');
+        }
+        function showResult() {
+            document.getElementById('formState').style.display = 'none';
+            document.getElementById('processingState').classList.remove('active');
+            document.getElementById('resultState').classList.add('active');
+        }
+        function showError(msg) {
+            const el = document.getElementById('errorMsg');
+            document.getElementById('errorText').textContent = msg;
+            el.classList.add('active');
+            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('submitBtn').innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            Submit Complaint`;
+        }
+
+        // ── AI Step Animation ────────────────────────────────────
+        // Paced to the real backend time (~1s) so the steps track actual
+        // progress instead of holding the citizen on a finished screen.
+        const STEP_INTERVAL_MS = 450;
+        const RESULT_REVEAL_MS = 150;
+        let stepTimer = null;
+        function animateSteps(includeVision) {
+            const steps = includeVision
+                ? ['step0', 'step1', 'step2', 'step3']
+                : ['step1', 'step2', 'step3'];
+            let i = 0;
+            ['step0', 'step1', 'step2', 'step3'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.className = 'ai-step';
+            });
+            const step0 = document.getElementById('step0');
+            if (step0) step0.style.display = includeVision ? '' : 'none';
+            function advance() {
+                if (i < steps.length) {
+                    if (i > 0) {
+                        const prev = document.getElementById(steps[i - 1]);
+                        if (prev) prev.className = 'ai-step done';
+                    }
+                    const cur = document.getElementById(steps[i]);
+                    if (cur) cur.className = 'ai-step active';
+                    i++;
+                    stepTimer = setTimeout(advance, STEP_INTERVAL_MS);
+                }
+            }
+            advance();
+        }
+
+        // ── Submit ───────────────────────────────────────────────
+        async function submitComplaint() {
+            const text = ta.value.trim();
+            if (!text) {
+                ta.style.borderColor = 'var(--critical-border)';
+                setTimeout(() => ta.style.borderColor = '', 1200);
+                return;
+            }
+            if (text.length < 10) {
+                showError('Please provide more detail about your complaint (at least 10 characters).');
+                return;
+            }
+
+            // Hide previous error
+            document.getElementById('errorMsg').classList.remove('active');
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').textContent = 'Submitting…';
+
+            const hasPhotos = localPhotos.length > 0;
+            showProcessing();
+            animateSteps(hasPhotos);
+
+            try {
+                let images = null;
+                if (hasPhotos) {
+                    images = await photosToDataUrls();
+                }
+                const result = await api.createComplaint(text, images);
+                clearTimeout(stepTimer);
+                ['step0', 'step1', 'step2', 'step3'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.className = 'ai-step done';
+                });
+                if (result.vision) renderVisionResult(result.vision);
+                setTimeout(() => populateResult(result), RESULT_REVEAL_MS);
+            } catch (err) {
+                clearTimeout(stepTimer);
+                showForm();
+                showError(err.message);
+            }
+        }
+
+        // ── Populate Result ──────────────────────────────────────
+        function populateResult(data) {
+            const c = data.complaint;
+            const priority = data.priority || {};
+            const routing = data.routing || {};
+
+            // ID & timestamp
+            document.getElementById('rComplaintId').textContent = c.complaint_id;
+            document.getElementById('rTimestamp').textContent =
+                new Date(c.created_at).toLocaleString('en-IN', {
+                    day: '2-digit', month: 'short', year: 'numeric',
+                    hour: '2-digit', minute: '2-digit', hour12: true
+                });
+
+            // Priority badge
+            const prioCls = (c.priority || 'low').toLowerCase();
+            document.getElementById('rPriorityBadge').innerHTML =
+                `<span class="prio-badge prio-badge--${prioCls}">${c.priority || 'LOW'}</span>`;
+
+            // Score circle
+            const circle = document.getElementById('rScoreCircle');
+            circle.className = `res-score-circle res-score-circle--${prioCls}`;
+            document.getElementById('rScore').textContent = Math.round(c.priority_score || 0);
+
+            // Priority level & response
+            const responseMap = { CRITICAL: '24 hours', HIGH: '48 hours', MEDIUM: '72 hours', LOW: '5 days' };
+            const responseTime = responseMap[(c.priority || 'LOW').toUpperCase()] || '—';
+            document.getElementById('rPriorityLevel').textContent = `${c.priority || 'LOW'} PRIORITY`;
+            document.getElementById('rPriorityLevel').style.color =
+                prioCls === 'critical' ? 'var(--critical-text)' :
+                    prioCls === 'high' ? 'var(--high-text)' :
+                        prioCls === 'medium' ? 'var(--medium-text)' : 'var(--low-text)';
+            document.getElementById('rResponse').innerHTML =
+                `Recommended response: <strong>${responseTime}</strong>`;
+
+            // Category & location
+            document.getElementById('rCategory').textContent = c.category || '—';
+            document.getElementById('rLocation').textContent = c.location || 'Not specified';
+            document.getElementById('rDepartment').textContent = c.department || '—';
+
+            // AI factors
+            const factors = c.priority_reasons || [];
+            const factorsEl = document.getElementById('rFactors');
+            if (factors.length) {
+                const maxPts = Math.max(...factors.map(f => f.points), 1);
+                factorsEl.innerHTML = factors.map(f => {
+                    const pct = Math.min(100, (f.points / maxPts) * 100);
+                    return `<div class="rfactor-row">
+                    <span class="rfactor-name">${escHtml(f.factor)}</span>
+                    <div class="rfactor-bar"><div class="rfactor-bar__fill" style="width:${pct}%"></div></div>
+                    <span class="rfactor-pts">+${f.points}</span>
+                </div>`;
+                }).join('');
+            } else {
+                factorsEl.innerHTML = '<p style="font-size:12.5px;color:var(--text-muted)">No significant risk factors detected.</p>';
+            }
+
+            // What next
+            document.getElementById('rDeptInline').textContent = c.department || '—';
+            document.getElementById('rResponseTime').textContent = responseTime;
+            document.getElementById('rTrackId').textContent = c.complaint_id;
+            document.getElementById('rFooterId').textContent = c.complaint_id;
+
+            showResult();
+            document.getElementById('formCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // ── Reset ────────────────────────────────────────────────
+        function resetForm() {
+            ta.value = '';
+            updateCharCount();
+            clearLocalPhotos();
+            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('submitBtn').innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            Submit Complaint`;
+            document.getElementById('errorMsg').classList.remove('active');
+            showForm();
+        }
+
+        // ── Helpers ──────────────────────────────────────────────
+        function escHtml(str) {
+            if (!str) return '';
+            const d = document.createElement('div');
+            d.appendChild(document.createTextNode(str));
+            return d.innerHTML;
+        }
+        // ── Prefill from homepage quick form ────────────────────
+        (function () {
+            const prefill = sessionStorage.getItem('yyPrefillComplaint');
+            if (prefill) {
+                const ta = document.getElementById('complaintText');
+                if (ta) {
+                    ta.value = prefill;
+                    updateCharCount();
+                }
+                sessionStorage.removeItem('yyPrefillComplaint');
+            }
+        })();
+    </script>
+</body>
+
+</html>

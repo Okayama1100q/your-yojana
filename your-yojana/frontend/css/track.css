@@ -1,0 +1,533 @@
+/* ============================================================
+   track.css — Complaint Tracking Page
+   Premium Indian Government Design
+   ============================================================ */
+
+.track-page {
+    background: var(--warm-50);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ── Track Hero ──────────────────────────────────────── */
+.track-hero {
+    background: var(--navy-900);
+    position: relative;
+    overflow: hidden;
+}
+
+.track-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(255,153,51,0.06) 0%, transparent 45%),
+        radial-gradient(circle at 80% 60%, rgba(19,136,8,0.04) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.track-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: rgba(255,153,51,0.12);
+    border: 1px solid rgba(255,153,51,0.25);
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--saffron-300);
+    letter-spacing: 0.04em;
+    margin-bottom: 18px;
+}
+
+.track-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 52px 40px 48px;
+    text-align: center;
+}
+
+.track-hero__title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.track-hero__sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.48);
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+/* ── Track Search Form ───────────────────────────────── */
+.track-search-form {
+    display: flex;
+    gap: 8px;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.track-input-wrap {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.track-input-icon {
+    position: absolute;
+    left: 14px;
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.track-input {
+    width: 100%;
+    padding: 13px 14px 13px 42px;
+    font-size: 14px;
+    color: #fff;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-lg);
+    font-family: monospace;
+    letter-spacing: 0.05em;
+    outline: none;
+    transition: all var(--trans-fast);
+    text-transform: uppercase;
+}
+.track-input::placeholder {
+    color: rgba(255,255,255,0.25);
+    font-family: inherit;
+    letter-spacing: 0.02em;
+    text-transform: none;
+}
+.track-input:focus {
+    border-color: rgba(255,153,51,0.5);
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 0 3px rgba(255,153,51,0.1);
+}
+
+.track-search-btn {
+    padding: 13px 22px;
+    background: var(--saffron-400);
+    color: var(--navy-900);
+    font-size: 14px;
+    font-weight: 800;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all var(--trans-fast);
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(232,137,31,0.3);
+}
+.track-search-btn:hover {
+    background: var(--saffron-500);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(232,137,31,0.4);
+}
+
+.track-hero__hint {
+    margin-top: 12px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.28);
+    font-family: monospace;
+    letter-spacing: 0.04em;
+}
+
+/* ── Track Results Area ──────────────────────────────── */
+.track-results {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 40px 64px;
+    width: 100%;
+}
+
+/* Loading state */
+.track-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 48px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    color: var(--text-muted);
+    font-size: 13.5px;
+}
+
+.track-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--slate-200);
+    border-top-color: var(--navy-600);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* ── Complaint Detail Card ───────────────────────────── */
+.complaint-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 16px;
+}
+
+.complaint-card__header {
+    background: var(--navy-900);
+    padding: 20px 28px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.complaint-card__id {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.4);
+    font-family: monospace;
+    margin-bottom: 4px;
+}
+
+.complaint-card__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    max-width: 480px;
+}
+
+.complaint-card__badges {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.complaint-card__body {
+    padding: 24px 28px;
+}
+
+.complaint-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.complaint-meta-item {}
+
+.complaint-meta-item__label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+.complaint-meta-item__value {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Description section */
+.complaint-description {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.complaint-description__label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.complaint-description__text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    background: var(--warm-50);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+}
+
+/* ── AI Analysis Card ─────────────────────────────────── */
+.ai-analysis-card {
+    background: var(--navy-900);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: var(--shadow-md);
+}
+
+.ai-analysis-card__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.03);
+}
+
+.ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    background: rgba(255,153,51,0.15);
+    border: 1px solid rgba(255,153,51,0.3);
+    border-radius: 99px;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--saffron-400);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.ai-analysis-card__title {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+}
+
+.ai-analysis-card__body {
+    padding: 20px 24px;
+}
+
+.ai-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.ai-grid-item {}
+
+.ai-grid-item__label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 4px;
+}
+
+.ai-grid-item__value {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+}
+
+.ai-reasons {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 14px;
+}
+
+.ai-reasons__label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 10px;
+}
+
+.ai-reason-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+}
+.ai-reason-item:last-child { margin-bottom: 0; }
+
+.ai-reason-item::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--saffron-400);
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+/* ── Status Timeline ──────────────────────────────────── */
+.status-timeline-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.status-timeline-card__header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 14px 24px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--warm-50);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.status-timeline {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.timeline-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+}
+
+.timeline-step__line {
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    bottom: -20px;
+    width: 2px;
+    background: var(--border-subtle);
+    z-index: 0;
+}
+
+.timeline-step:last-child .timeline-step__line { display: none; }
+
+.timeline-step__dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--border-default);
+    background: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    transition: all var(--trans-base);
+    color: var(--text-disabled);
+}
+
+.timeline-step__dot--active {
+    background: var(--navy-700);
+    border-color: var(--navy-700);
+    color: #fff;
+    box-shadow: 0 0 0 4px rgba(26,47,84,0.12);
+}
+
+.timeline-step__dot--done {
+    background: var(--gov-green-600);
+    border-color: var(--gov-green-600);
+    color: #fff;
+}
+
+.timeline-step__dot--done ~ .timeline-step__line {
+    background: var(--gov-green-600);
+}
+
+.timeline-step__content {
+    flex: 1;
+    padding-bottom: 20px;
+    padding-top: 4px;
+}
+
+.timeline-step__title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+.timeline-step--done .timeline-step__title { color: var(--gov-green-700); }
+.timeline-step--active .timeline-step__title { color: var(--navy-700); }
+.timeline-step--pending .timeline-step__title { color: var(--text-disabled); font-weight: 500; }
+
+.timeline-step__desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ── Error / Empty ───────────────────────────────────── */
+.track-error,
+.track-empty {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 48px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.track-error__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--critical-bg);
+    color: var(--critical-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+}
+
+.track-error__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--critical-text);
+    margin-bottom: 6px;
+}
+
+.track-error__desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+    .track-hero__inner { padding: 36px 20px 36px; }
+    .track-hero__title { font-size: 28px; }
+    .track-results { padding: 24px 16px 48px; }
+    .track-search-form { flex-direction: column; }
+    .complaint-card__header { flex-direction: column; }
+    .complaint-meta-grid { grid-template-columns: 1fr 1fr; }
+    .ai-grid { grid-template-columns: 1fr 1fr; }
+}

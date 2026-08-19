@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SafeRoute — Compare routes using travel information and Your Yojana civic reports. Not a crime prediction system.">
+    <title>SafeRoute | Your Yojana</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/saferoute.css">
+</head>
+<body class="sr-page">
+
+<header class="site-header" role="banner">
+    <div class="header-top-bar" aria-label="Utility bar">
+        <button class="header-top-bar__link" aria-label="Select language">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+            </svg>
+            English / हिन्दी
+        </button>
+        <div class="header-top-bar__divider" aria-hidden="true"></div>
+        <span>A free public service digital platform</span>
+    </div>
+    <div class="header-main">
+        <a href="index.html" class="header-brand" aria-label="Your Yojana — Home">
+            <div class="header-emblem" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+            </div>
+            <div class="header-brand__text">
+                <div class="header-brand__name">Your Yojana</div>
+                <div class="header-brand__tagline">One Platform. Every Citizen. Every Concern.</div>
+            </div>
+        </a>
+        <nav class="header-nav" role="navigation" aria-label="Main navigation">
+            <a href="index.html" class="nav-link-main">Home</a>
+            <a href="schemes.html" class="nav-link-main">Schemes</a>
+            <a href="citizen.html" class="nav-link-main">Report Issue</a>
+            <a href="track.html" class="nav-link-main">Track Complaint</a>
+            <a href="civic-map.html" class="nav-link-main">Civic Map</a>
+            <a href="saferoute.html" class="nav-link-main nav-link-main--active" aria-current="page">SafeRoute</a>
+        </nav>
+        <div class="header-right">
+            <button class="header-lang-btn" aria-label="Select language">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                </svg>
+                EN / हिं
+            </button>
+            <a href="citizen.html" class="header-signin-btn" style="text-decoration:none">Report Issue</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="schemes.html" class="mobile-nav-link">Government Schemes</a>
+        <a href="citizen.html" class="mobile-nav-link">Report an Issue</a>
+        <a href="track.html" class="mobile-nav-link">Track Complaint</a>
+        <a href="civic-map.html" class="mobile-nav-link">Civic Map</a>
+        <a href="saferoute.html" class="mobile-nav-link">SafeRoute</a>
+        <a href="citizen.html" class="mobile-nav-link mobile-nav-link--cta">Report a Civic Issue →</a>
+    </nav>
+</header>
+
+<main>
+
+<section class="sr-hero" aria-labelledby="srTitle">
+    <div class="sr-hero__inner">
+        <div class="sr-hero__badges">
+            <span class="sr-hero__badge">Civic route comparison</span>
+            <span class="sr-demo-badge" id="srDemoBadge" hidden></span>
+        </div>
+        <h1 class="sr-hero__title" id="srTitle">Find a route that works for you.</h1>
+        <p class="sr-hero__sub">
+            Compare available routes using travel information and relevant civic reports from Your Yojana.
+            This is not a crime prediction system and does not guarantee personal safety.
+        </p>
+
+        <form class="sr-search" id="srSearchForm" autocomplete="off">
+            <div class="sr-field">
+                <label class="sr-field__label" for="srStart">Start location</label>
+                <input class="sr-field__input" id="srStart" name="start" type="text" placeholder="e.g. India Gate, New Delhi" required>
+            </div>
+            <div class="sr-field">
+                <label class="sr-field__label" for="srDest">Destination</label>
+                <input class="sr-field__input" id="srDest" name="destination" type="text" placeholder="e.g. Connaught Place, New Delhi" required>
+            </div>
+            <button type="button" class="sr-btn sr-btn--ghost" id="srUseLocation">Use my location</button>
+            <button type="submit" class="sr-btn sr-btn--primary" id="srFindBtn">Find routes</button>
+        </form>
+    </div>
+</section>
+
+<div class="sr-layout">
+
+    <aside class="sr-sidebar">
+        <div class="sr-card">
+            <div class="sr-card__header">Your preference</div>
+            <div class="sr-card__body">
+                <div class="sr-prefs" role="tablist" aria-label="Route preference">
+                    <button type="button" class="sr-pref" data-pref="FASTEST" id="prefFastest">Fastest</button>
+                    <button type="button" class="sr-pref is-active" data-pref="BALANCED" id="prefBalanced">Balanced</button>
+                    <button type="button" class="sr-pref" data-pref="CIVIC_SAFETY" id="prefCivic">Civic safety</button>
+                </div>
+                <p class="sr-disclaimer" style="margin-top:10px">
+                    All routes stay visible. Preference only changes which route is recommended.
+                </p>
+            </div>
+        </div>
+
+        <div class="sr-card">
+            <div class="sr-card__header">All routes</div>
+            <div class="sr-card__body" id="srRouteList">
+                <p class="sr-empty">Enter a start and destination to compare every route returned by the routing provider.</p>
+            </div>
+        </div>
+
+        <div class="sr-card" id="srWhyCard">
+            <div class="sr-card__header">Why is this route recommended?</div>
+            <div class="sr-card__body" id="srWhyBody">
+                <p class="sr-empty">A recommendation appears after routes are compared. You make the final choice.</p>
+            </div>
+        </div>
+
+        <div class="sr-card">
+            <div class="sr-card__header">What this uses</div>
+            <div class="sr-card__body">
+                <p class="sr-disclaimer" id="srDataUsed">
+                    Travel times and route geometry come from OpenStreetMap routing. Civic indicators use the synthetic
+                    Chennai demonstration dataset (category, priority, status, coordinates) — generated records, not real
+                    government complaints. Your live complaint database is never modified or scored here. Citizen identity
+                    is never used. Crime data and IoT sensors are not part of this system.
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sr-main">
+        <div class="sr-map-frame">
+            <div id="saferouteMap" role="application" aria-label="SafeRoute map with route alternatives"></div>
+            <div class="sr-overlay" id="srOverlay" role="status" aria-live="polite">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2">
+                    <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+                </svg>
+                <div class="sr-overlay__title">Compare routes on the Civic Map stack</div>
+                <div class="sr-overlay__sub">
+                    Start and destination markers, every returned alternative, and relevant civic pins
+                    (only when precise coordinates exist) appear here together.
+                </div>
+            </div>
+        </div>
+        <div class="sr-status">
+            <div class="sr-dot" id="srDot"></div>
+            <span id="srStatusText">Ready. Existing Civic Map behaviour is unchanged.</span>
+        </div>
+
+        <div class="sr-notice sr-notice--info" id="srGeoNotice" hidden></div>
+
+        <div class="sr-card">
+            <div class="sr-card__header">Route comparison</div>
+            <div class="sr-card__body sr-table-wrap" id="srCompareBody">
+                <p class="sr-empty">The comparison table fills after routes are found.</p>
+            </div>
+        </div>
+
+        <div class="sr-card">
+            <div class="sr-card__header">Civic hotspots</div>
+            <div class="sr-card__body" id="srHotspots">
+                <p class="sr-hotspot-empty">Clusters of unresolved relevant reports along the compared routes appear here, computed from the synthetic dataset. None are fabricated.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<footer class="sr-footer" role="contentinfo">
+    <span>© 2026 Your Yojana ·</span>
+    <a href="index.html">Home</a> ·
+    <a href="civic-map.html">Civic Map</a> ·
+    <a href="citizen.html">Report Issue</a> ·
+    <span>SafeRoute is an explainable civic-infrastructure comparison tool — not a safety guarantee.</span>
+</footer>
+
+<script src="js/lib/leaflet.js"></script>
+<script src="js/api.js"></script>
+<script src="js/saferoute-data.js"></script>
+<script src="js/saferoute-engine.js"></script>
+<script src="js/saferoute.js"></script>
+<script>
+(function() {
+    const btn = document.getElementById('hamburgerBtn');
+    const nav = document.getElementById('mobileNav');
+    if (btn && nav) {
+        btn.addEventListener('click', () => {
+            const open = nav.classList.toggle('open');
+            btn.setAttribute('aria-expanded', open);
+        });
+    }
+})();
+</script>
+</body>
+</html>

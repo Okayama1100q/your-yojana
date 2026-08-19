@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your Yojana — One Platform. Every Citizen. Every Concern. Discover government schemes, raise civic complaints, and track resolution.">
+    <title>Your Yojana — Government Services & Civic Assistance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="page-body">
+
+<!-- ═══════════════════════════════════════════════════════════
+     SITE HEADER
+═══════════════════════════════════════════════════════════ -->
+<header class="site-header" role="banner">
+
+    <!-- Top utility bar -->
+    <div class="header-top-bar" aria-label="Accessibility and language options">
+        <button class="header-top-bar__link" aria-label="Select language">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+            </svg>
+            English / हिन्दी
+        </button>
+        <div class="header-top-bar__divider" aria-hidden="true"></div>
+        <button class="header-top-bar__link" aria-label="Accessibility settings">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/>
+                <path d="M7 20.662V19a2 2 0 012-2h6a2 2 0 012 2v1.662"/>
+            </svg>
+            Accessibility
+        </button>
+        <div class="header-top-bar__divider" aria-hidden="true"></div>
+        <span>A free public service digital platform</span>
+    </div>
+
+    <!-- Main header bar -->
+    <div class="header-main">
+
+        <!-- Brand -->
+        <a href="index.html" class="header-brand" aria-label="Your Yojana — Home">
+            <div class="header-emblem" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+            </div>
+            <div class="header-brand__text">
+                <div class="header-brand__name">Your Yojana</div>
+                <div class="header-brand__tagline">One Platform. Every Citizen. Every Concern.</div>
+            </div>
+        </a>
+
+        <!-- Primary Navigation -->
+        <nav class="header-nav" role="navigation" aria-label="Main navigation">
+            <a href="index.html"    class="nav-link-main nav-link-main--active" aria-current="page">Home</a>
+            <a href="schemes.html"  class="nav-link-main">Schemes</a>
+            <a href="citizen.html"  class="nav-link-main">Report an Issue</a>
+            <a href="track.html"    class="nav-link-main">Track Complaint</a>
+            <a href="civic-map.html" class="nav-link-main">Civic Map</a>
+            <a href="saferoute.html" class="nav-link-main">SafeRoute</a>
+            <a href="#how-it-works" class="nav-link-main">How It Works</a>
+        </nav>
+
+        <!-- Right Controls -->
+        <div class="header-right">
+            <button class="header-lang-btn" aria-label="Select language">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                </svg>
+                EN / हिं
+            </button>
+            <button class="header-icon-btn" aria-label="Accessibility options" title="Accessibility">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="7" r="2"/><path d="M12 9v6m-3 0h6"/>
+                    <path d="M8 22l2-5m4 5l-2-5"/>
+                </svg>
+            </button>
+            <button class="header-signin-btn" aria-label="Sign in to your account">Sign In</button>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav id="mobileNav" class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <a href="index.html"   class="mobile-nav-link">Home</a>
+        <a href="schemes.html" class="mobile-nav-link">Government Schemes</a>
+        <a href="citizen.html" class="mobile-nav-link">Report an Issue</a>
+        <a href="track.html"   class="mobile-nav-link">Track Complaint</a>
+        <a href="civic-map.html" class="mobile-nav-link">Civic Map</a>
+        <a href="saferoute.html" class="mobile-nav-link">SafeRoute</a>
+        <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+        <a href="#help"        class="mobile-nav-link">Help</a>
+        <a href="citizen.html" class="mobile-nav-link mobile-nav-link--cta">Report a Civic Issue →</a>
+    </nav>
+
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════════════════ -->
+<section class="hero-section" aria-labelledby="heroTitle">
+
+    <div class="hero-badge" aria-label="Platform type">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        AI-Assisted Civic Governance Platform
+    </div>
+
+    <h1 class="hero-title" id="heroTitle">
+        Government services.<br>
+        <em>Civic support.</em> One platform.
+    </h1>
+
+    <p class="hero-sub">
+        Find schemes you're eligible for, report civic problems, and follow
+        their resolution from one trusted platform built for every citizen.
+    </p>
+
+    <!-- Primary CTAs -->
+    <div class="hero-ctas">
+        <a href="schemes.html" class="btn-hero-primary" id="findSchemesBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            Find Schemes For You
+        </a>
+        <a href="citizen.html" class="btn-hero-secondary" id="reportIssueBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            Report a Civic Issue
+        </a>
+        <a href="track.html" class="btn-hero-track" id="trackComplaintBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            Track My Complaint
+        </a>
+    </div>
+
+    <!-- Unified Search -->
+    <div class="hero-search-wrap" role="search" aria-label="Search government services">
+        <div class="hero-search-label">What are you looking for?</div>
+        <div class="hero-search-box">
+            <div class="hero-search-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+            </div>
+            <input
+                type="text"
+                class="hero-search-input"
+                id="heroSearchInput"
+                placeholder="Search schemes, report an issue, track complaint…"
+                aria-label="Search schemes or services"
+                autocomplete="off"
+            >
+            <button class="hero-search-btn" id="heroSearchBtn" aria-label="Search">
+                Search
+            </button>
+        </div>
+        <!-- Example chips -->
+        <div class="hero-search-chips" role="list" aria-label="Search suggestions">
+            <button class="search-chip" data-query="Scholarships" role="listitem" aria-label="Search for Scholarships">Scholarships</button>
+            <button class="search-chip" data-query="Water supply" role="listitem" aria-label="Search for Water supply">Water supply</button>
+            <button class="search-chip" data-query="Road problems" role="listitem" aria-label="Search for Road problems">Road problems</button>
+            <button class="search-chip" data-query="Housing scheme" role="listitem" aria-label="Search for Housing scheme">Housing</button>
+            <button class="search-chip" data-query="Employment" role="listitem" aria-label="Search for Employment">Employment</button>
+            <button class="search-chip" data-query="Healthcare" role="listitem" aria-label="Search for Healthcare">Healthcare</button>
+        </div>
+    </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LIVE STATS STRIP
+═══════════════════════════════════════════════════════════ -->
+<div class="stats-strip" role="region" aria-label="Platform statistics" aria-live="polite">
+    <div class="stat-item">
+        <div>
+            <div class="stat-item__value stat-item__value--accent" id="statTotal">—</div>
+            <div class="stat-item__label">Total Complaints<br>Registered</div>
+        </div>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item">
+        <div>
+            <div class="stat-item__value stat-item__value--resolved" id="statResolved">—</div>
+            <div class="stat-item__label">Complaints<br>Resolved</div>
+        </div>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item">
+        <div>
+            <div class="stat-item__value" id="statCritical" style="color:var(--critical-text)">—</div>
+            <div class="stat-item__label">Critical Issues<br>Flagged</div>
+        </div>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item">
+        <div>
+            <div class="stat-item__value" id="statDepts">—</div>
+            <div class="stat-item__label">Government<br>Departments</div>
+        </div>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-live-dot">
+        <div class="health-dot" aria-hidden="true"></div>
+        <span id="statLastUpdate">Loading…</span>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     QUICK ACCESS CARDS
+═══════════════════════════════════════════════════════════ -->
+<section class="content-section" aria-labelledby="quickAccessHeading">
+
+    <div class="section-eyebrow" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/>
+        </svg>
+        Quick Access
+    </div>
+    <h2 class="section-heading" id="quickAccessHeading">Everything you need, in one place</h2>
+    <p class="section-sub">Access government schemes, civic complaint tools, and citizen assistance — all from here.</p>
+
+    <div class="quick-cards" role="list">
+
+        <!-- Schemes -->
+        <a href="schemes.html" class="quick-card" role="listitem" aria-label="Government Schemes — Discover schemes relevant to you">
+            <div class="quick-card__icon quick-card__icon--schemes" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+            </div>
+            <div>
+                <div class="quick-card__title">Government Schemes</div>
+                <div class="quick-card__desc">Discover schemes and benefits relevant to your age, state, and profile.</div>
+            </div>
+            <div class="quick-card__arrow">
+                Explore Schemes
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </div>
+        </a>
+
+        <!-- Report -->
+        <a href="citizen.html" class="quick-card" role="listitem" aria-label="Report a Civic Issue — Submit a complaint">
+            <div class="quick-card__icon quick-card__icon--report" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+            </div>
+            <div>
+                <div class="quick-card__title">Report a Civic Issue</div>
+                <div class="quick-card__desc">Raise a complaint and let AI help identify the issue, assess urgency, and route it.</div>
+            </div>
+            <div class="quick-card__arrow">
+                Report Now
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </div>
+        </a>
+
+        <!-- Track -->
+        <a href="track.html" class="quick-card" role="listitem" aria-label="Track Complaint — Follow your complaint status">
+            <div class="quick-card__icon quick-card__icon--track" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+            </div>
+            <div>
+                <div class="quick-card__title">Track Complaint</div>
+                <div class="quick-card__desc">Track the status of your civic complaint from submission to resolution.</div>
+            </div>
+            <div class="quick-card__arrow">
+                Track Status
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </div>
+        </a>
+
+        <!-- Assist -->
+        <a href="#help" class="quick-card" role="listitem" aria-label="Citizen Assistance — Get guidance on government services">
+            <div class="quick-card__icon quick-card__icon--assist" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+            </div>
+            <div>
+                <div class="quick-card__title">Citizen Assistance</div>
+                <div class="quick-card__desc">Get guidance on government services, eligibility, documents, and procedures.</div>
+            </div>
+            <div class="quick-card__arrow">
+                Get Help
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </div>
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCHEME DISCOVERY SECTION
+═══════════════════════════════════════════════════════════ -->
+<section class="scheme-section" aria-labelledby="schemesHeading" id="schemes">
+<div class="scheme-inner">
+
+    <div class="scheme-header">
+        <div>
+            <div class="section-eyebrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                Scheme Discovery
+            </div>
+            <h2 class="section-heading" id="schemesHeading" style="margin-bottom:4px">Find Schemes For You</h2>
+            <p style="font-size:14px;color:var(--text-muted);max-width:520px;line-height:1.65">
+                Tell us a little about yourself and discover government schemes that may be relevant to you.
+                <span style="color:var(--medium-text);font-weight:600"> Demo — Sample data only.</span>
+            </p>
+        </div>
+        <a href="schemes.html" class="btn-hero-secondary" style="flex-shrink:0;font-size:13px;padding:9px 18px">
+            Full Scheme Directory →
+        </a>
+    </div>
+
+    <!-- Multi-Step Wizard -->
+    <div class="wizard-wrap" id="homeWizard" role="form" aria-label="Scheme eligibility wizard">
+
+        <!-- Step Tabs -->
+        <div class="wizard-steps-bar" role="tablist" aria-label="Wizard steps">
+            <div class="wizard-step-tab wizard-step-tab--active" role="tab" aria-selected="true" aria-label="Step 1: Basic Details">
+                <div class="wizard-step-num" aria-hidden="true">1</div>
+                <span>Basic Details</span>
+            </div>
+            <div class="wizard-step-tab" role="tab" aria-selected="false" aria-label="Step 2: Profile">
+                <div class="wizard-step-num" aria-hidden="true">2</div>
+                <span>Your Profile</span>
+            </div>
+            <div class="wizard-step-tab" role="tab" aria-selected="false" aria-label="Step 3: Needs">
+                <div class="wizard-step-num" aria-hidden="true">3</div>
+                <span>Your Needs</span>
+            </div>
+        </div>
+
+        <!-- Wizard Body -->
+        <div class="wizard-body">
+
+            <!-- Step 1: Basic Details -->
+            <div class="wizard-panel active" id="homeWizStep1" role="tabpanel" aria-labelledby="step1Tab">
+                <div style="font-size:13px;color:var(--text-muted);margin-bottom:18px">
+                    Tell us a little about yourself to find relevant schemes. All information is used only to filter results.
+                </div>
+                <div class="wizard-field-grid">
+                    <div class="wizard-field-group">
+                        <label for="hwAge" class="wizard-field-label">Age</label>
+                        <input type="number" id="hwAge" class="wizard-field-input" min="1" max="120" placeholder="e.g. 28" aria-label="Your age">
+                    </div>
+                    <div class="wizard-field-group">
+                        <label for="hwGender" class="wizard-field-label">Gender</label>
+                        <select id="hwGender" class="wizard-field-select" aria-label="Your gender">
+                            <option value="">Select gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Transgender</option>
+                            <option>Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div class="wizard-field-group">
+                        <label for="hwState" class="wizard-field-label">State / UT</label>
+                        <select id="hwState" class="wizard-field-select" aria-label="Your state">
+                            <option value="">Select state</option>
+                            <option>Andhra Pradesh</option><option>Assam</option><option>Bihar</option>
+                            <option>Delhi</option><option>Gujarat</option><option>Haryana</option>
+                            <option>Himachal Pradesh</option><option>Jharkhand</option><option>Karnataka</option>
+                            <option>Kerala</option><option>Madhya Pradesh</option><option>Maharashtra</option>
+                            <option>Odisha</option><option>Punjab</option><option>Rajasthan</option>
+                            <option>Tamil Nadu</option><option>Telangana</option><option>Uttar Pradesh</option>
+                            <option>Uttarakhand</option><option>West Bengal</option>
+                        </select>
+                    </div>
+                    <div class="wizard-field-group">
+                        <label for="hwArea" class="wizard-field-label">Area Type</label>
+                        <select id="hwArea" class="wizard-field-select" aria-label="Urban or rural">
+                            <option value="">Select area type</option>
+                            <option>Urban</option>
+                            <option>Rural</option>
+                            <option>Semi-urban</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Profile -->
+            <div class="wizard-panel" id="homeWizStep2" role="tabpanel" aria-labelledby="step2Tab" hidden>
+                <div style="font-size:13px;color:var(--text-muted);margin-bottom:18px">
+                    Your employment and income details help identify relevant benefit schemes.
+                </div>
+                <div class="wizard-field-grid">
+                    <div class="wizard-field-group">
+                        <label for="hwEmploy" class="wizard-field-label">Employment Status</label>
+                        <select id="hwEmploy" class="wizard-field-select" aria-label="Employment status">
+                            <option value="">Select status</option>
+                            <option>Employed (Salaried)</option>
+                            <option>Self-employed</option>
+                            <option>Unemployed</option>
+                            <option>Farmer</option>
+                            <option>Student</option>
+                            <option>Homemaker</option>
+                            <option>Retired</option>
+                        </select>
+                    </div>
+                    <div class="wizard-field-group">
+                        <label for="hwIncome" class="wizard-field-label">Annual Family Income</label>
+                        <select id="hwIncome" class="wizard-field-select" aria-label="Annual family income">
+                            <option value="">Select income range</option>
+                            <option>Below ₹1 lakh (BPL)</option>
+                            <option>₹1 – ₹3 lakh (EWS)</option>
+                            <option>₹3 – ₹6 lakh (LIG)</option>
+                            <option>₹6 – ₹12 lakh (MIG-I)</option>
+                            <option>₹12 – ₹18 lakh (MIG-II)</option>
+                            <option>Above ₹18 lakh</option>
+                        </select>
+                    </div>
+                    <div class="wizard-field-group" style="grid-column:1/-1">
+                        <label for="hwCaste" class="wizard-field-label">Social Category</label>
+                        <select id="hwCaste" class="wizard-field-select" aria-label="Social category">
+                            <option value="">Select category</option>
+                            <option>General</option>
+                            <option>OBC</option>
+                            <option>SC</option>
+                            <option>ST</option>
+                            <option>Minority</option>
+                            <option>Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Needs -->
+            <div class="wizard-panel" id="homeWizStep3" role="tabpanel" aria-labelledby="step3Tab" hidden>
+                <div style="font-size:13px;color:var(--text-muted);margin-bottom:18px">
+                    Select the areas where you are looking for government assistance. Select multiple.
+                </div>
+                <div class="wizard-needs-grid" role="group" aria-label="Select your needs">
+                    <div class="need-card" data-need="education" role="checkbox" aria-checked="false" tabindex="0">
+                        <div class="need-card__icon">📚</div>
+                        <div class="need-card__label">Education</div>
+                    </div>
+                    <div class="need-card" data-need="employment" role="checkbox" aria-checked="false" tabindex="0">
+                        <div class="need-card__icon">💼</div>
+                        <div class="need-card__label">Employment</div>
+                    </div>
+                    <div class="need-card" data-need="housing" role="checkbox" aria-checked="false" tabindex="0">
+                        <div class="need-card__icon">🏠</div>
+                        <div class="need-card__label">Housing</div>
+                    </div>
+                    <div class="need-card" data-need="healthcare" role="checkbox" aria-checked="false" tabindex="0">
+                        <div class="need-card__icon">🏥</div>
+                        <div class="need-card__label">Healthcare</div>
+                    </div>
+                    <div class="need-card" data-need="agriculture" role="checkbox" aria-checked="false" tabindex="0">
+                        <div class="need-card__icon">🌾</div>
+                        <div class="need-card__label">Agriculture</div>
+                    </div>
+                    <div class="need-card" data-need="welfare" role="checkbox" aria-checked="false" tabindex="0">
+                        <div class="need-card__icon">👶</div>
+                        <div class="need-card__label">Women &amp; Child</div>
+                    </div>
+                    <div class="need-card" data-need="welfare" role="checkbox" aria-checked="false" tabindex="0">
+                        <div class="need-card__icon">🤝</div>
+                        <div class="need-card__label">Social Welfare</div>
+                    </div>
+                    <div class="need-card" data-need="financial" role="checkbox" aria-checked="false" tabindex="0">
+                        <div class="need-card__icon">💰</div>
+                        <div class="need-card__label">Financial Aid</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wizard Nav -->
+            <div class="wizard-nav">
+                <div class="wizard-note" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    Demo — Sample scheme data only
+                </div>
+                <div style="display:flex;align-items:center;gap:10px">
+                    <button class="btn btn--outline btn--sm" data-wizard-back aria-label="Go to previous step">
+                        ← Back
+                    </button>
+                    <button class="btn btn--primary" data-wizard-next aria-label="Go to next step or find schemes">
+                        Next →
+                    </button>
+                </div>
+            </div>
+
+        </div><!-- /wizard-body -->
+    </div><!-- /wizard-wrap -->
+
+    <!-- Scheme Results (populated by JS) -->
+    <div id="homeSchemeResults" style="display:none" aria-live="polite" aria-label="Matching schemes"></div>
+
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CIVIC ISSUE SECTION
+═══════════════════════════════════════════════════════════ -->
+<section class="civic-section" aria-labelledby="civicHeading">
+<div class="civic-inner">
+
+    <div class="civic-left">
+        <div class="section-eyebrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            Civic Complaints
+        </div>
+        <h2 class="section-heading" id="civicHeading">Raise a Civic Issue</h2>
+        <p class="section-sub" style="margin-bottom:0">
+            Describe your problem in plain language. Our AI system handles the rest —
+            understanding the issue, assessing urgency, and routing it to the right department.
+        </p>
+
+        <div class="civic-process" aria-label="How complaint processing works">
+            <div class="civic-process-step">
+                <div class="process-step-icon process-step-icon--1" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                    </svg>
+                </div>
+                <div class="process-step-text">
+                    <strong>You describe the problem</strong>
+                    <span>Write in plain language. Include location and how many people are affected if possible.</span>
+                </div>
+            </div>
+            <div class="civic-process-step">
+                <div class="process-step-icon process-step-icon--2" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                </div>
+                <div class="process-step-text">
+                    <strong>AI assesses and routes</strong>
+                    <span>Three AI agents analyze category, urgency score, and which department should handle it.</span>
+                </div>
+            </div>
+            <div class="civic-process-step">
+                <div class="process-step-icon process-step-icon--3" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <div class="process-step-text">
+                    <strong>Track it to resolution</strong>
+                    <span>You get a Complaint ID and can track status through every step of the process.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="civic-right">
+        <div class="civic-form-card" role="complementary" aria-label="Quick complaint form">
+            <div class="civic-form-header">
+                <div class="civic-form-header__dot" aria-hidden="true"></div>
+                <div class="civic-form-header__title">Describe Your Problem</div>
+            </div>
+            <div class="civic-form-body">
+                <textarea
+                    class="civic-textarea"
+                    id="quickComplaintText"
+                    placeholder="Example: The road on MG Road near the market has a large pothole that has been causing accidents for 3 days…"
+                    aria-label="Quick complaint description"
+                    rows="5"
+                ></textarea>
+                <div class="civic-form-footer">
+                    <p class="civic-form-note">
+                        Your complaint will be analyzed by AI<br>and routed to the right department.
+                    </p>
+                    <a href="citizen.html" class="civic-submit-btn" id="quickSubmitBtn" aria-label="Go to full complaint form">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                        Submit Complaint
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════════════════════ -->
+<section class="hiw-section" aria-labelledby="hiwHeading" id="how-it-works">
+<div class="hiw-inner">
+
+    <div style="text-align:center">
+        <div class="section-eyebrow" style="justify-content:center" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            How It Works
+        </div>
+        <h2 class="section-heading" id="hiwHeading" style="margin-bottom:8px">From report to resolution</h2>
+        <p style="font-size:14px;color:var(--text-muted);max-width:480px;margin:0 auto;line-height:1.65">
+            Your Yojana makes civic complaint resolution simple, transparent, and accountable.
+        </p>
+    </div>
+
+    <div class="hiw-steps-grid" role="list" aria-label="How it works steps">
+
+        <div class="hiw-step" role="listitem">
+            <div class="hiw-step__connector" aria-hidden="true"></div>
+            <div class="hiw-step__icon-wrap hiw-step__icon-wrap--1" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <div class="hiw-step__num" aria-hidden="true">1</div>
+            </div>
+            <div class="hiw-step__title">Citizen Reports</div>
+            <p class="hiw-step__desc">You describe the civic problem in plain language — no forms, no jargon. Just tell us what happened.</p>
+        </div>
+
+        <div class="hiw-step" role="listitem">
+            <div class="hiw-step__connector" aria-hidden="true"></div>
+            <div class="hiw-step__icon-wrap hiw-step__icon-wrap--2" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                <div class="hiw-step__num" aria-hidden="true">2</div>
+            </div>
+            <div class="hiw-step__title">AI Understands</div>
+            <p class="hiw-step__desc">Our system analyzes the complaint — identifying the category, health risk, affected population, and duration.</p>
+        </div>
+
+        <div class="hiw-step" role="listitem">
+            <div class="hiw-step__connector" aria-hidden="true"></div>
+            <div class="hiw-step__icon-wrap hiw-step__icon-wrap--3" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                <div class="hiw-step__num" aria-hidden="true">3</div>
+            </div>
+            <div class="hiw-step__title">Smart Routing</div>
+            <p class="hiw-step__desc">The complaint is directed to the appropriate government department based on category and location.</p>
+        </div>
+
+        <div class="hiw-step" role="listitem">
+            <div class="hiw-step__icon-wrap hiw-step__icon-wrap--4" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <div class="hiw-step__num" aria-hidden="true">4</div>
+            </div>
+            <div class="hiw-step__title">Government Resolves</div>
+            <p class="hiw-step__desc">Officers review the complaint, take action, and update the status. You can track every step of the way.</p>
+        </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:40px">
+        <a href="citizen.html" class="btn-hero-primary" style="display:inline-flex">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            Report a Civic Issue Now
+        </a>
+        <a href="track.html" class="btn-hero-secondary" style="display:inline-flex;margin-left:10px">
+            Track Existing Complaint
+        </a>
+    </div>
+
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     GOVERNMENT PORTALS STRIP
+═══════════════════════════════════════════════════════════ -->
+<section style="background:var(--bg-surface);border-top:1px solid var(--border-subtle);padding:36px 40px" aria-label="Staff portals">
+    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+        <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:4px">
+                Are you a government officer or administrator?
+            </div>
+            <div style="font-size:12.5px;color:var(--text-muted)">
+                Access the operational portal or administration dashboard to manage complaints and view analytics.
+            </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a href="government.html" class="btn-hero-secondary" style="font-size:13px;padding:9px 18px">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                Government Portal
+            </a>
+            <a href="admin.html" class="btn-hero-secondary" style="font-size:13px;padding:9px 18px">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                Admin Dashboard
+            </a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SITE FOOTER
+═══════════════════════════════════════════════════════════ -->
+<footer class="site-footer" role="contentinfo" id="help">
+    <div class="footer-main">
+        <div>
+            <div class="header-emblem" style="width:40px;height:40px" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+            </div>
+            <div class="footer-brand__name">Your Yojana</div>
+            <p class="footer-brand__desc">
+                A unified citizen-government platform for scheme discovery, civic complaint submission,
+                AI-assisted prioritization, and transparent resolution.
+            </p>
+            <p class="footer-brand__tagline">"One Platform. Every Citizen. Every Concern."</p>
+        </div>
+        <div class="footer-links-grid">
+            <div>
+                <div class="footer-col__heading">Citizen Services</div>
+                <a href="schemes.html" class="footer-link">Government Schemes</a>
+                <a href="citizen.html" class="footer-link">Report an Issue</a>
+                <a href="track.html"   class="footer-link">Track Complaint</a>
+                <a href="civic-map.html" class="footer-link">Civic Map</a>
+                <a href="saferoute.html" class="footer-link">SafeRoute</a>
+                <a href="#help"        class="footer-link">Help &amp; Guidance</a>
+            </div>
+            <div>
+                <div class="footer-col__heading">Portals</div>
+                <a href="government.html" class="footer-link">Officer Portal</a>
+                <a href="admin.html"      class="footer-link">Admin Dashboard</a>
+                <a href="#"               class="footer-link">API Documentation</a>
+            </div>
+            <div>
+                <div class="footer-col__heading">Platform</div>
+                <a href="#how-it-works" class="footer-link">How It Works</a>
+                <a href="#"             class="footer-link">AI Transparency</a>
+                <a href="#"             class="footer-link">Accessibility</a>
+                <a href="#"             class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2025 Your Yojana. A demonstration civic-governance platform.</span>
+        <div class="footer-bottom__right">
+            <span>Backend: localhost:8000</span>
+            <span>·</span>
+            <span>Version 1.0.0</span>
+            <span>·</span>
+            <span>Not an official Government of India service.</span>
+        </div>
+    </div>
+</footer>
+
+<!-- Toast container for notifications -->
+<div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Scripts -->
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/home.js"></script>
+
+<!-- Handle quick complaint redirect -->
+<script>
+document.getElementById('quickSubmitBtn').addEventListener('click', function(e) {
+    const text = document.getElementById('quickComplaintText').value.trim();
+    if (text) {
+        sessionStorage.setItem('yyPrefillComplaint', text);
+    }
+});
+</script>
+
+</body>
+</html>
